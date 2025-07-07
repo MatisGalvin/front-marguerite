@@ -2,6 +2,7 @@
 
 import { DataTable } from "@/components/ui/table/data-table";
 import { Barcode, CheckIcon, Pencil, Trash2Icon } from "lucide-react";
+import cowPng from "@/assets/images/auth-cow.png";
 
 import { dialog } from "@/components/ui/alert-dialog";
 
@@ -72,7 +73,7 @@ export default function Products() {
                 label: "Image",
                 cell: ({ row: { original: product } }) => (
                   <Image
-                    src={product.image.url}
+                    src={product.image.url ? `${product.image.url}` : cowPng}
                     alt={product.image.alternativeText || "Product Image"}
                     width={100}
                     height={100}
