@@ -72,7 +72,7 @@ export default function Products() {
                 label: "Image",
                 cell: ({ row: { original: product } }) => (
                   <Image
-                    src={product.image.url}
+                    src={process.env.NEXT_PUBLIC_DOMAIN + product.image.url}
                     alt={product.image.alternativeText || "Product Image"}
                     width={100}
                     height={100}
