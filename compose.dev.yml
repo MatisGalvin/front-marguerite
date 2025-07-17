@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"
+    env_file:
+      - ".env.development"
+    extra_hosts:
+      - "localhost:host-gateway"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next

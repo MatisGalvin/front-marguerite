@@ -2,7 +2,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { queryClient } from "@/lib/react-query";
 import { SaleAPI } from "@/api/sale/sale-api";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetFooter,
+} from "@/components/ui/sheet";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "@/hooks/toast";
 import { Button } from "@/components/ui/button";
@@ -24,8 +31,8 @@ export function UpdateSaleSheet(p: {
 }) {
   const products = useProductsMe();
 
-
-  const sale = p.sale
+  const sale = p.sale;
+  console.log("UpdateSaleSheet", sale);
 
   const form = useForm<UpdateSaleForm>({
     resolver: zodResolver(UpdateSaleFormSchema),
@@ -36,22 +43,28 @@ export function UpdateSaleSheet(p: {
         from: new Date(sale.startDate),
         to: new Date(sale.endDate),
       },
-      products: sale.products.map(product => ({ id: product.id.toString() })),
+      products:
+        sale.products?.map((product) => ({ id: product.id.toString() })) ?? [],
     },
     mode: "onChange",
-  })
+  });
 
   const { mutate: updateSale, isPending } = useMutation({
-    mutationFn: async (formValues: UpdateSaleForm) => SaleAPI.update(sale.id, formValues),
+    mutationFn: async (formValues: UpdateSaleForm) =>
+      SaleAPI.update(sale.id, formValues),
     onSuccess: (sale) => {
-
-      toastSuccess("Modification de la vente", `La vente ${sale.name} à été modifiée avec succès`)
+      toastSuccess(
+        "Modification de la vente",
+        `La vente ${sale.name} à été modifiée avec succès`,
+      );
       form.reset();
       p.onOpenChange(false);
+
+      queryClient.invalidateQueries({ queryKey: ["sales"] });
     },
     onError: async (error) => {
       const errorMessage = (await (error as any).response.json()).error.message;
-      toastError("Echec : Modification de la vente", errorMessage)
+      toastError("Echec : Modification de la vente", errorMessage);
     },
   });
 
@@ -82,17 +95,22 @@ export function UpdateSaleSheet(p: {
       <InputCheckboxGroup
         name="products"
         label="Produits"
-        items={products.data?.map((product) => ({ id: product.id.toString(), label: product.name })) ?? []}
+        items={
+          products.data?.map((product) => ({
+            id: product.id.toString(),
+            label: product.name,
+          })) ?? []
+        }
       />
     </div>
   );
 
   return (
-    <Sheet open={p.isOpen} onOpenChange={p.onOpenChange} >
+    <Sheet open={p.isOpen} onOpenChange={p.onOpenChange}>
       <SheetContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <SheetHeader>
           <SheetTitle className="flex items-center">
-            <UserCog className="h-4 w-4 mr-2" /> Modifier une vente existante
+            <UserCog className="mr-2 h-4 w-4" /> Modifier une vente existante
           </SheetTitle>
           <SheetDescription>
             Saisissez les informations requises pour modifier la vente
@@ -104,7 +122,7 @@ export function UpdateSaleSheet(p: {
             {formFields}
             <SheetFooter>
               <Button type="submit" isLoading={isPending}>
-                <Save className="h-4 w-4 mr-2" /> Enregistrer
+                <Save className="mr-2 h-4 w-4" /> Enregistrer
               </Button>
             </SheetFooter>
           </form>
