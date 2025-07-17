@@ -6,7 +6,13 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:dev": "docker-compose -f compose.dev.yml up --build",
+    "docker:prod": "docker-compose -f compose.prod.yml up --build -d",
+    "docker:dev:down": "docker-compose -f compose.dev.yml down",
+    "docker:prod:down": "docker-compose -f compose.prod.yml down",
+    "docker:dev:logs": "docker-compose -f compose.dev.yml logs -f",
+    "docker:prod:logs": "docker-compose -f compose.prod.yml logs -f"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.3",
