@@ -11,7 +11,7 @@ export type Sale = {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  products: Product[];
+  products?: Product[];
   total_price: number;
   current_weight: number;
   purchases: Purchase[];
