@@ -88,7 +88,7 @@ export function CreateClientSheet() {
             <UserPlusIcon className="mr-2 h-4 w-4" />
             Ajouter un nouveau client
           </SheetTitle>
-          <SheetDescription>
+          <SheetDescription data-testid="create-client-sheet-description">
             Saisissez les informations requises pour créer le client
           </SheetDescription>
         </SheetHeader>
@@ -101,12 +101,14 @@ export function CreateClientSheet() {
                 name="firstname"
                 label="Prénom"
                 placeholder="John"
+                data-testid="create-client-firstname"
               />
               <InputText
                 required
                 name="lastname"
                 label="Nom"
                 placeholder="Doe"
+                data-testid="create-client-lastname"
               />
               <InputText
                 required
@@ -114,11 +116,13 @@ export function CreateClientSheet() {
                 label="Email"
                 type="email"
                 placeholder="a@example.com"
+                data-testid="create-client-email"
               />
               <InputText
                 required
                 name="phoneNumber"
                 label="Numéro de téléphone"
+                data-testid="create-client-phone"
                 placeholder="06..."
               />
             </div>

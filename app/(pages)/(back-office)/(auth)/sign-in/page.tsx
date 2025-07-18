@@ -128,6 +128,7 @@ export default function SignIn() {
                     />
                     <button
                       type="button"
+                      data-testid="toggle-password-visibility"
                       onClick={() => setDisplayPassword(!displayPassword)}
                     >
                       <PasswordIcon className="relative right-7" />
