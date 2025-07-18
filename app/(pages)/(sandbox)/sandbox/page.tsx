@@ -8,10 +8,7 @@ export default function SandboxPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Button>HELLO
-
-        
-      </Button>
+      <Button>HELLO</Button>
       <Calendar
         mode="single"
         selected={date}

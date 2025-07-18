@@ -15,6 +15,12 @@
     "docker:dev:logs": "docker-compose -f compose.dev.yml logs -f",
     "docker:prod:logs": "docker-compose -f compose.prod.yml logs -f"
   },
+  "lint-staged": {
+    "app/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",
     "pre-push": "pnpm format",
