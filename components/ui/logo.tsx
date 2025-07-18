@@ -6,7 +6,7 @@ export function Logo(p: {}) {
       src={margueritePng.src}
       height={512}
       width={512}
-      className="w-12 h-12 mr-2"
+      className="mr-2 h-12 w-12"
       alt="Marguerite"
     />
   );

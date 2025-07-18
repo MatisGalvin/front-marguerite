@@ -27,15 +27,15 @@
   }
 
   h1 {
-    @apply text-[#0B292F]  font-bold text-[32px] tracking-tight;
+    @apply text-[32px]  font-bold tracking-tight text-[#0B292F];
   }
 
   h2 {
-    @apply text-[#0B292F]  text-[20px] font-medium tracking-tight;
+    @apply text-[20px]  font-medium tracking-tight text-[#0B292F];
   }
 
   h3 {
-    @apply text-[#0B292F] font-medium text-[14px];
+    @apply text-[14px] font-medium text-[#0B292F];
   }
 
   h4 {

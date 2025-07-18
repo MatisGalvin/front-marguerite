@@ -33,7 +33,9 @@ export default function SigInLayout({
         <div className="relative z-20 mt-auto p-4">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              {"Je gagne des heures au quotidien pour organiser mes ventes, c'est top !"}
+              {
+                "Je gagne des heures au quotidien pour organiser mes ventes, c'est top !"
+              }
             </p>
             <footer className="text-sm">Christine Galisson</footer>
           </blockquote>

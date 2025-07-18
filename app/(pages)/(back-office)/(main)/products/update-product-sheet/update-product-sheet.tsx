@@ -22,7 +22,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { CheckIcon, UserCog } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { UpdateProductForm, UpdateProductFormSchema } from "../../../../../../schemas/product-schema";
+import {
+  UpdateProductForm,
+  UpdateProductFormSchema,
+} from "../../../../../../schemas/product-schema";
 
 export function UpdateProductSheet(p: {
   product: Product;
@@ -47,15 +50,20 @@ export function UpdateProductSheet(p: {
     mutationFn: (formData: FormData) =>
       ProductApi.update(p.product.id, formData),
     onSuccess: (product) => {
-
       toast({
         title: "",
-        description: <div >
-          <div className="flex gap-1 text-md font-bold">  Modification du produit  <CheckIcon className="absolute right-4" color="green" /></div>
-          <div className=" mt-2">
-            Le produit ${product.name} à été modifié avec succès
+        description: (
+          <div>
+            <div className="text-md flex gap-1 font-bold">
+              {" "}
+              Modification du produit{" "}
+              <CheckIcon className="absolute right-4" color="green" />
+            </div>
+            <div className=" mt-2">
+              Le produit ${product.name} à été modifié avec succès
+            </div>
           </div>
-        </div>
+        ),
       });
       p.onOpenChange(false);
       queryClient.invalidateQueries({ queryKey: ["products"] });
@@ -83,7 +91,7 @@ export function UpdateProductSheet(p: {
         : undefined;
     formData.append(
       "data",
-      JSON.stringify({ ...formValues, product_options: productOptionsArray })
+      JSON.stringify({ ...formValues, product_options: productOptionsArray }),
     );
     if (image) {
       formData.append("files.image", image, image.name);
@@ -135,7 +143,10 @@ export function UpdateProductSheet(p: {
   );
   return (
     <Sheet open={p.isOpen} onOpenChange={p.onOpenChange}>
-      <SheetContent className="overflow-y-scroll h-screen" onOpenAutoFocus={(e) => e.preventDefault()}>
+      <SheetContent
+        className="h-screen overflow-y-scroll"
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
         <SheetHeader>
           <SheetTitle className="flex gap-2 ">
             <UserCog className="h-5 w-5 pt-1" /> Modifier un produit existant

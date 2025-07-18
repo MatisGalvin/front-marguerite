@@ -67,7 +67,7 @@ export function DataTablePagination<TData>({
         <ChevronLeftIcon className="h-4 w-4" />
       </Button>
       <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-        Page {table.getState().pagination.pageIndex + 1} sur {" "}
+        Page {table.getState().pagination.pageIndex + 1} sur{" "}
         {table.getPageCount()}
       </div>
       <Button
@@ -91,7 +91,7 @@ export function DataTablePagination<TData>({
     </div>
   );
   return (
-    <div className="w-full grid grid-cols-4">
+    <div className="grid w-full grid-cols-4">
       <div className="col-span-1" />
       <div className="col-span-2">
         <div className="flex items-center justify-center px-2">

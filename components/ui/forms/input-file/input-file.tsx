@@ -1,4 +1,10 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
 import { cx } from "class-variance-authority";
@@ -12,7 +18,8 @@ export function InputFile({
   name: string;
   label: string;
   className?: string;
-  formItemProps?: React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>;
+  formItemProps?: React.HTMLAttributes<HTMLDivElement> &
+    React.RefAttributes<HTMLDivElement>;
   accept?: string;
   required?: boolean;
   imageUrl?: string;
@@ -35,7 +42,7 @@ export function InputFile({
 
             {previewImageSrc && (
               <>
-                <div className={`relative cursor-pointer group`}>
+                <div className={`group relative cursor-pointer`}>
                   <Image
                     src={previewImageSrc}
                     alt="Image Description"
@@ -44,7 +51,7 @@ export function InputFile({
                     className="rounded-md"
                     onClick={() => inputRef.current?.click()}
                   />
-                  <div className=" justify-center items-center text-white hidden absolute inset-0   rounded-md bg-black/50   group-hover:flex pointer-events-none ">
+                  <div className=" pointer-events-none absolute inset-0 hidden items-center justify-center   rounded-md bg-black/50   text-white group-hover:flex ">
                     Selectionner une image
                   </div>
                 </div>
@@ -60,7 +67,11 @@ export function InputFile({
                 onChange={(e) => {
                   const file = e.target.files?.[0];
                   if (file) {
-                    form.setValue(p.name, file,{ shouldValidate:true, shouldDirty:true ,shouldTouch:true});
+                    form.setValue(p.name, file, {
+                      shouldValidate: true,
+                      shouldDirty: true,
+                      shouldTouch: true,
+                    });
                     form.trigger(p.name);
                   }
                 }}

@@ -13,8 +13,7 @@ export type CreateProductResponse = StrapiResult<Product>;
 
 /* Read all Products */
 export type ReadAllProductResponse = StrapiResultList<Product>;
-export type ReadAllProductRequest = { userId?: string }
-
+export type ReadAllProductRequest = { userId?: string };
 
 /* Update Product */
 export type UpdateProductRequest = Pick<Product, "id">;

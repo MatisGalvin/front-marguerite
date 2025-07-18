@@ -18,7 +18,7 @@ export function InputTextarea(
       React.RefAttributes<HTMLDivElement>;
     onChange?: (text: string) => void;
     required?: boolean;
-  } & React.InputHTMLAttributes<HTMLTextAreaElement>
+  } & React.InputHTMLAttributes<HTMLTextAreaElement>,
 ) {
   const form = useFormContext();
   return (
