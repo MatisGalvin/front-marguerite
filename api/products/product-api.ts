@@ -7,7 +7,6 @@ import {
   UpdateProductResponse,
 } from "./product-api.type";
 
-
 export class ProductApi {
   static async create(createProductBody: FormData) {
     return formatStrapiResponse(
@@ -15,10 +14,8 @@ export class ProductApi {
         .post("products", {
           body: createProductBody,
         })
-        .json<CreateProductResponse>()
+        .json<CreateProductResponse>(),
     );
-
-
   }
   static async readAll(request?: ReadAllProductRequest) {
     const strapiResponse = await api
@@ -26,7 +23,7 @@ export class ProductApi {
         "products",
         request?.userId
           ? { searchParams: { userId: request?.userId } }
-          : undefined
+          : undefined,
       )
       .json<ReadAllProductResponse>();
     const result = formatStrapiResponse(strapiResponse);
@@ -37,7 +34,7 @@ export class ProductApi {
     const result = formatStrapiResponse(
       await api
         .put(`products/${id}`, { body: formData })
-        .json<UpdateProductResponse>()
+        .json<UpdateProductResponse>(),
     );
     return result;
   }

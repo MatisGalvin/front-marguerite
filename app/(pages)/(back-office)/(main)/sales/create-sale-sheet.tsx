@@ -2,7 +2,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { queryClient } from "@/lib/react-query";
 import { SaleAPI } from "@/api/sale/sale-api";
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetFooter,
+} from "@/components/ui/sheet";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "@/hooks/toast";
@@ -10,7 +18,13 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { InputText } from "@/components/ui/forms/input-text/input-text";
 import { InputNumber } from "@/components/ui/forms/input-number/input-number";
-import { CheckIcon, Plus, Save, ShoppingCart, UserPlus2Icon } from "lucide-react";
+import {
+  CheckIcon,
+  Plus,
+  Save,
+  ShoppingCart,
+  UserPlus2Icon,
+} from "lucide-react";
 import { CreateSaleForm, CreateSaleFormSchema } from "@/schemas/sale-schema";
 import { InputDateRange } from "@/components/ui/forms/input-date-range/input-date-range";
 import { InputCheckboxGroup } from "@/components/ui/forms/input-checkbox-group/input-checkbox-group";
@@ -24,24 +38,28 @@ export function CreateSaleSheet() {
     defaultValues: {
       date: {
         from: undefined,
-        to: undefined
+        to: undefined,
       },
       products: [],
     },
   });
   const { mutate: createSale, isPending } = useMutation({
-
-    mutationFn: async (formValues: CreateSaleForm) => SaleAPI.create(formValues),
+    mutationFn: async (formValues: CreateSaleForm) =>
+      SaleAPI.create(formValues),
     onSuccess: (sale) => {
-
       toast({
         title: "",
-        description: <div >
-          <div className="flex gap-1 text-md font-bold">Création vente  <CheckIcon className="absolute right-4" color="green" /></div>
-          <div className=" mt-2">
-            La vente {sale.name} à été créée avec succès
+        description: (
+          <div>
+            <div className="text-md flex gap-1 font-bold">
+              Création vente{" "}
+              <CheckIcon className="absolute right-4" color="green" />
+            </div>
+            <div className=" mt-2">
+              La vente {sale.name} à été créée avec succès
+            </div>
           </div>
-        </div>
+        ),
       });
 
       form.reset();
@@ -85,12 +103,15 @@ export function CreateSaleSheet() {
       <InputCheckboxGroup
         name="products"
         label="Produits"
-        items={products.data?.map((product) => ({ id: product.id.toString(), label: product.name })) ?? []}
+        items={
+          products.data?.map((product) => ({
+            id: product.id.toString(),
+            label: product.name,
+          })) ?? []
+        }
       />
-
     </div>
   );
-
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -101,8 +122,8 @@ export function CreateSaleSheet() {
             className="relative"
             onClick={() => setIsOpen(true)}
           >
-            <ShoppingCart className="h-5 w-5 mr-5" />
-            <Plus className="h-3 w-3 absolute inset-x-7 inset-y-2" />
+            <ShoppingCart className="mr-5 h-5 w-5" />
+            <Plus className="absolute inset-x-7 inset-y-2 h-3 w-3" />
             Créer vente
           </Button>
         </SheetTrigger>
@@ -110,7 +131,7 @@ export function CreateSaleSheet() {
       <SheetContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <SheetHeader>
           <SheetTitle className="flex items-center">
-            <UserPlus2Icon className="h-4 w-4 mr-2" /> Créer une nouvelle vente
+            <UserPlus2Icon className="mr-2 h-4 w-4" /> Créer une nouvelle vente
           </SheetTitle>
           <SheetDescription>
             Saisissez les informations requises pour créer la vente
@@ -121,9 +142,8 @@ export function CreateSaleSheet() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {formFields}
             <SheetFooter>
-
               <Button type="submit" isLoading={isPending}>
-                <Save className="h-4 w-4 mr-2" /> Enregistrer
+                <Save className="mr-2 h-4 w-4" /> Enregistrer
               </Button>
             </SheetFooter>
           </form>

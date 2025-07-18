@@ -1,6 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { ROUTES } from "@/constants/routes";
@@ -89,7 +95,9 @@ export default function SignIn() {
     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">Bonjour 👋</h1>
-        <p className="text-sm text-muted-foreground">Entrez vos identifiants pour vous connecter</p>
+        <p className="text-sm text-muted-foreground">
+          Entrez vos identifiants pour vous connecter
+        </p>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-2">
@@ -112,9 +120,16 @@ export default function SignIn() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Mot de passe</FormLabel>
-                  <div className="flex items-center py-4 relative">
-                    <Input placeholder="******" {...field} type={displayPassword ? "text" : "password"} />
-                    <button type="button" onClick={() => setDisplayPassword(!displayPassword)}>
+                  <div className="relative flex items-center py-4">
+                    <Input
+                      placeholder="******"
+                      {...field}
+                      type={displayPassword ? "text" : "password"}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setDisplayPassword(!displayPassword)}
+                    >
                       <PasswordIcon className="relative right-7" />
                     </button>
                   </div>
@@ -126,7 +141,9 @@ export default function SignIn() {
           </div>
           <div className="grid gap-1">
             <Button disabled={isPending}>
-              {isPending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+              {isPending && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
               Se connecter
             </Button>
           </div>
@@ -134,11 +151,17 @@ export default function SignIn() {
       </Form>
       <p className="px-8 text-center text-sm text-muted-foreground">
         En cliquant, vous acceptez nos{" "}
-        <Link href="/terms" className="underline underline-offset-4 hover:text-primary">
+        <Link
+          href="/terms"
+          className="underline underline-offset-4 hover:text-primary"
+        >
           Conditions d&apos;utilisation
         </Link>{" "}
         et{" "}
-        <Link href="/privacy" className="underline underline-offset-4 hover:text-primary">
+        <Link
+          href="/privacy"
+          className="underline underline-offset-4 hover:text-primary"
+        >
           Politique de confidentialité
         </Link>
         .

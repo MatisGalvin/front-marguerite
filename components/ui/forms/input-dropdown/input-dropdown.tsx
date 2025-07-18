@@ -1,24 +1,36 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cx } from "class-variance-authority";
 
 import { useFormContext } from "react-hook-form";
-export type InputOptions = { value: string | number, label: string };
+export type InputOptions = { value: string | number; label: string };
 export function InputDropdown({
   options = [],
   ...p
 }: {
-
   name: string;
   label: string;
   placeholder: string;
   options?: InputOptions[];
   className?: string;
-  formItemProps?: React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>;
+  formItemProps?: React.HTMLAttributes<HTMLDivElement> &
+    React.RefAttributes<HTMLDivElement>;
   onChange?: (value: string | number) => void;
   required?: boolean;
   icon?: React.ReactNode;
-  readonly?: boolean
+  readonly?: boolean;
 }) {
   const form = useFormContext();
   const originalValueType = typeof options[0]?.value;
@@ -30,7 +42,7 @@ export function InputDropdown({
       render={({ field }) => {
         return (
           <FormItem {...p.formItemProps} className={cx("w-full", p.className)}>
-            <FormLabel className="flex gap-2 !my-0 !space-y-0 !py-0">
+            <FormLabel className="!my-0 flex gap-2 !space-y-0 !py-0">
               {p.icon}
               {p.label}
               {p.required && <span className={`text-red-400`}>*</span>}
@@ -53,7 +65,10 @@ export function InputDropdown({
               <SelectContent className={cx("w-full")}>
                 {options.map((d, i) => {
                   return (
-                    <SelectItem key={d.value + "--" + i} value={d.value.toString()}>
+                    <SelectItem
+                      key={d.value + "--" + i}
+                      value={d.value.toString()}
+                    >
                       {d.label}
                     </SelectItem>
                   );

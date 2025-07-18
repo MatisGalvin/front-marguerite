@@ -39,7 +39,7 @@ export const PurchaseStatusFilter = (p: {
             <TabsTrigger key={statusKey} value={statusKey}>
               {
                 PURCHASE_LABEL_STATUS[
-                statusKey as keyof typeof PURCHASE_LABEL_STATUS
+                  statusKey as keyof typeof PURCHASE_LABEL_STATUS
                 ]
               }
             </TabsTrigger>

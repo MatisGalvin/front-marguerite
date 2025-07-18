@@ -34,5 +34,5 @@ export type PurchaseItem = {
   product: Product;
   product_option: string | number;
   total_price: number;
-  product_extra: ProductExtra
+  product_extra: ProductExtra;
 };

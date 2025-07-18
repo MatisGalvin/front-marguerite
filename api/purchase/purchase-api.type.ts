@@ -17,7 +17,7 @@ export type CreatePurchaseResponse = StrapiResult<Purchase>;
 
 export type CreatePurchaseNewUserBody = {
   saleId: Id;
-  userId?: Id
+  userId?: Id;
   purchaseItems: {
     product: Id;
     quantity: number;
@@ -36,6 +36,7 @@ export type UpdatePurchaseRequest = Partial<
 >;
 export type UpdatePurchaseResponse = StrapiResult<Purchase>;
 
-export type UpdateManyPurchaseReq = (Pick<Purchase, "id"> & Partial<Pick<Purchase, "is_paid" | "is_seen_by_user" | "status">>)[];
+export type UpdateManyPurchaseReq = (Pick<Purchase, "id"> &
+  Partial<Pick<Purchase, "is_paid" | "is_seen_by_user" | "status">>)[];
 
 export type UpdateManyPurchaseResponse = StrapiResult<Purchase>;
