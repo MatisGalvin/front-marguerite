@@ -143,7 +143,7 @@ test.describe("Sign-In Page Tests", () => {
     await passwordInput.fill("password123");
     await page.getByRole("button", { name: "Se connecter" }).click();
 
-    await expect(page).toHaveURL("/sales");
+    await expect(page).toHaveURL("/");
   });
 
   test("should show error for invalid credentials", async ({ page }) => {

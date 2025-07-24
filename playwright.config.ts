@@ -34,7 +34,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337/api NODE_ENV=test npm run dev',
+    command:
+      "NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337/api NODE_ENV=test npm run dev",
     url: "http://localhost:3000",
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
