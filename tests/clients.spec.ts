@@ -139,9 +139,12 @@ test.describe("Clients Page Tests", () => {
 
     await createButton.click();
 
-    await page.waitForSelector("[data-testid='create-client-sheet-description']", {
-      state: "visible",
-    });
+    await page.waitForSelector(
+      "[data-testid='create-client-sheet-description']",
+      {
+        state: "visible",
+      },
+    );
 
     // Fill form fields if they exist
     const firstnameInput = page.getByTestId("create-client-firstname");
@@ -160,10 +163,11 @@ test.describe("Clients Page Tests", () => {
     await submitButton.click();
 
     // Check for success message
-    await expect(page.getByText('Le client a été créé avec succès', { exact: true })).toBeVisible({
+    await expect(
+      page.getByText("Le client a été créé avec succès", { exact: true }),
+    ).toBeVisible({
       timeout: 5000,
     });
-
   });
 
   test("should show edit client sheet when edit button is clicked", async ({
