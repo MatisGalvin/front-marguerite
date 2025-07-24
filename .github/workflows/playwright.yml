@@ -18,20 +18,17 @@ jobs:
         with:
           node-version: lts/*
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Install dependencies
-        run: pnpm install
+        run: npm ci
 
       - name: Build app
-        run: pnpm build
+        run: npm run build
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: pnpm exec playwright test --project=chromium
+        run: npx playwright test  --project=chromium
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
