@@ -81,7 +81,7 @@ test.describe("Sign-In Page Tests", () => {
     const passwordInput = page
       .locator('input[name="password"]')
       .or(page.getByPlaceholder("******"));
-    const toggleButton = page.locator('button[type="button"]').last();
+    const toggleButton = page.getByTestId("toggle-password-visibility");
 
     await passwordInput.fill("testpassword");
 

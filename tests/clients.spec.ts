@@ -78,7 +78,7 @@ test.describe("Clients Page Tests", () => {
     page,
   }) => {
     // Mock empty clients list
-    await page.route("**/clients", async (route) => {
+    await page.route("**/api/clients", async (route) => {
       await route.fulfill({
         status: 200,
         contentType: "application/json",
@@ -111,7 +111,7 @@ test.describe("Clients Page Tests", () => {
 
   test("should handle client creation", async ({ page }) => {
     // Mock clients API for initial load
-    await page.route("**/clients", async (route) => {
+    await page.route("**/api/clients", async (route) => {
       if (route.request().method() === "GET") {
         await route.fulfill({
           status: 200,
@@ -127,7 +127,7 @@ test.describe("Clients Page Tests", () => {
             firstname: "laura",
             lastname: "outang",
             email: "nouveau@example.com",
-            phoneNumber: "+33111222333",
+            phoneNumber: "0192837466",
           }),
         });
       }
@@ -137,38 +137,33 @@ test.describe("Clients Page Tests", () => {
 
     const createButton = page.getByRole("button", { name: "Créer client" });
 
-    if (await createButton.isVisible()) {
-      await createButton.click();
+    await createButton.click();
 
-      // Fill form fields if they exist
-      const firstnameInput = page.getByLabel("Prénom *");
-      const lastnameInput = page.getByLabel("Nom *");
-      const emailInput = page.getByLabel("Email *");
-      const phoneInput = page.getByLabel("Numéro de téléphone *");
+    await page.waitForSelector("[data-testid='create-client-sheet-description']", {
+      state: "visible",
+    });
 
-      if (await firstnameInput.isVisible()) {
-        await firstnameInput.fill("laura");
-      }
-      if (await lastnameInput.isVisible()) {
-        await lastnameInput.fill("outang");
-      }
-      if (await emailInput.isVisible()) {
-        await emailInput.fill("nouveau@example.com");
-      }
-      if (await phoneInput.isVisible()) {
-        await phoneInput.fill("+33111222333");
-      }
+    // Fill form fields if they exist
+    const firstnameInput = page.getByTestId("create-client-firstname");
+    const lastnameInput = page.getByTestId("create-client-lastname");
+    const emailInput = page.getByTestId("create-client-email");
+    const phoneInput = page.getByTestId("create-client-phone");
 
-      // Wait for form validation and submit button to be enabled
-      const submitButton = page.getByRole("button", { name: "Enregistrer" });
-      await expect(submitButton).toBeEnabled({ timeout: 5000 });
-      await submitButton.click();
+    await firstnameInput.fill("laura");
+    await lastnameInput.fill("outang");
+    await emailInput.fill("nouveau@example.com");
+    await phoneInput.fill("0192837466");
 
-      // Check for success message
-      await expect(page.getByText(/succès|créé|ajouté/i)).toBeVisible({
-        timeout: 5000,
-      });
-    }
+    // Wait for form validation and submit button to be enabled
+    const submitButton = page.getByRole("button", { name: "Enregistrer" });
+    await expect(submitButton).toBeEnabled({ timeout: 5000 });
+    await submitButton.click();
+
+    // Check for success message
+    await expect(page.getByText('Le client a été créé avec succès', { exact: true })).toBeVisible({
+      timeout: 5000,
+    });
+
   });
 
   test("should show edit client sheet when edit button is clicked", async ({
