@@ -20,7 +20,7 @@ export class PurchaseApi {
         .post("purchases", {
           json: { data: createPurchaseBody },
         })
-        .json<CreatePurchaseResponse>()
+        .json<CreatePurchaseResponse>(),
     );
   }
   static async createForNewUser(createPurchaseBody: CreatePurchaseNewUserBody) {
@@ -30,12 +30,14 @@ export class PurchaseApi {
           json: { data: createPurchaseBody },
         })
 
-        .json<CreatePurchaseResponse>()
+        .json<CreatePurchaseResponse>(),
     );
   }
   static async readAll() {
     const result = formatStrapiResponse(
-      await api.get("purchases?populate=deep,3").json<ReadAllPurchaseResponse>()
+      await api
+        .get("purchases?populate=deep,3")
+        .json<ReadAllPurchaseResponse>(),
     );
     return result;
   }
@@ -44,16 +46,17 @@ export class PurchaseApi {
     const result = formatStrapiResponse(
       await api
         .put(`purchases/${id}`, { json: { data: body } })
-        .json<UpdatePurchaseResponse>()
+        .json<UpdatePurchaseResponse>(),
     );
     return result;
   }
 
   static async updateMany(data: UpdateManyPurchaseReq) {
     return formatStrapiResponse(
-      await api.put(`purchases/update-many`, { json: { data } })
-        .json<UpdateManyPurchaseResponse>()
-    )
+      await api
+        .put(`purchases/update-many`, { json: { data } })
+        .json<UpdateManyPurchaseResponse>(),
+    );
   }
   static async delete(id: number) {
     return await api.delete(`purchases/${id}`).json<DeleteResponse>();

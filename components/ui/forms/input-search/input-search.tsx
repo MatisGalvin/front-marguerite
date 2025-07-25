@@ -76,7 +76,7 @@ export function InputSearch({
                   >
                     {field.value
                       ? options.find((option) => option.value === field?.value)
-                        ?.label
+                          ?.label
                       : "Selectionner"}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                   </Button>

@@ -39,17 +39,17 @@ export function DetailPurchaseSheet(p: {
   const clientCard = (
     <Card className="px-2 text-xs ">
       <CardContent className="p-4 ">
-        <div className="font-bold text-black flex items-center gap-1 ">
+        <div className="flex items-center gap-1 font-bold text-black ">
           <User size={18} />
           <div className=" text-lg">
             {p.purchase.client.firstname} {p.purchase.client.lastname}
           </div>
         </div>
-        <div className="text-gray-500 flex gap-2 items-center">
+        <div className="flex items-center gap-2 text-gray-500">
           <Mail className="h-3 w-3" />
           {p.purchase.client.email}
         </div>
-        <div className="text-gray-500 flex gap-2 items-center">
+        <div className="flex items-center gap-2 text-gray-500">
           <Phone className="h-3 w-3" />
           {formatPhoneNumber(p.purchase.client.phoneNumber)}
         </div>
@@ -60,10 +60,10 @@ export function DetailPurchaseSheet(p: {
   const sellCard = (
     <Card className="px-2 text-xs ">
       <CardContent className="p-4 ">
-        <div className="font-bold text-black text-lg">
+        <div className="text-lg font-bold text-black">
           {p.purchase.sale.name}
         </div>
-        <div className="text-gray-500 flex gap-2 items-center">
+        <div className="flex items-center gap-2 text-gray-500">
           <Calendar className="h-3 w-3" />
           {formatDate(p.purchase.sale.startDate)}
         </div>
@@ -82,7 +82,7 @@ export function DetailPurchaseSheet(p: {
             <div>
               <div className="flex justify-between">
                 <div className="flex items-start">
-                  <Package className="h-4 w-4 mr-2 mt-2" /> Commande #{" "}
+                  <Package className="mr-2 mt-2 h-4 w-4" /> Commande #{" "}
                   {p.purchase.id}
                 </div>
                 <BadgeStatus

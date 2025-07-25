@@ -7,10 +7,10 @@ import {
 export function formatStrapiResponse<T>(strapiResp: StrapiResultList<T>): T[];
 export function formatStrapiResponse<T>(strapiResp: StrapiResult<T>): T;
 export function formatStrapiResponse<T>(
-  strapiResp: StrapiResultList<T> | StrapiResult<T>
+  strapiResp: StrapiResultList<T> | StrapiResult<T>,
 ): T | T[] {
   const formatResultRecursively = <U>(
-    data: StrapiAttributes<U> | StrapiAttributes<U>[]
+    data: StrapiAttributes<U> | StrapiAttributes<U>[],
   ): U | U[] => {
     if (Array.isArray(data)) {
       return data.map((item) => formatResultRecursively(item)).flat() as U[];
@@ -22,16 +22,16 @@ export function formatStrapiResponse<T>(
         // add base url to images in the response ( shoud be done back...)
         const prependDomainToUrl = (obj: any) => {
           Object.keys(obj).forEach((key) => {
-            if (typeof obj[key] === 'object' && obj[key] !== null) {
+            if (typeof obj[key] === "object" && obj[key] !== null) {
               prependDomainToUrl(obj[key]); // Recursive call for nested objects
-            } else if (key === 'url' && typeof obj[key] === 'string') {
+            } else if (key === "url" && typeof obj[key] === "string") {
               // Prepend the base URL to the image URL if it's not already formatted
               obj[key] = `${process.env.NEXT_PUBLIC_DOMAIN}${obj[key]}`;
             }
           });
         };
 
-        if (typeof data === 'object' && data !== null) {
+        if (typeof data === "object" && data !== null) {
           prependDomainToUrl(data);
         }
         return data as U;

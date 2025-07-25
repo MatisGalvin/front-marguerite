@@ -17,7 +17,7 @@ type InputNumberProps = {
   placeholder: string;
   className?: string;
   formItemProps?: React.HTMLAttributes<HTMLDivElement> &
-  React.RefAttributes<HTMLDivElement>;
+    React.RefAttributes<HTMLDivElement>;
   required?: boolean;
   onChange?: (value: number) => void;
   icon?: React.ReactNode;
@@ -39,7 +39,11 @@ export function InputNumber({
       control={form.control}
       name={name}
       render={({ field: { onChange, ref, ...field } }) => (
-        <FormItem className={cx("w-full", className)} {...formItemProps} autoFocus={false}>
+        <FormItem
+          className={cx("w-full", className)}
+          {...formItemProps}
+          autoFocus={false}
+        >
           <FormLabel className="flex gap-2">
             {icon}
             {label}

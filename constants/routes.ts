@@ -15,7 +15,7 @@ export const isRoutePublic = (route: string, PUBLIC_ROUTES: string[]) => {
   for (const publicRoute of Object.values(PUBLIC_ROUTES)) {
     // Convert the public route to a regular expression
     const regex = new RegExp(
-      `^${publicRoute.replace(/\[.*?\]/g, "[^/]+")}(\\?.*)?$`
+      `^${publicRoute.replace(/\[.*?\]/g, "[^/]+")}(\\?.*)?$`,
     );
     if (regex.test(route)) {
       return true;

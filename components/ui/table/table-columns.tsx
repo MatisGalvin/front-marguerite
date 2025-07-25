@@ -53,7 +53,6 @@ export function tableColumns<T>(headers: {
     onClick: (orignalData: T, row: Row<Partial<T>>) => void;
   }[];
 }): ColumnDef<Partial<T>>[] {
-
   const actions: ColumnDef<Partial<T>> = {
     id: "actions",
 
@@ -61,7 +60,11 @@ export function tableColumns<T>(headers: {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0" onClick={(e) => e.stopPropagation()}>
+            <Button
+              variant="ghost"
+              className="h-8 w-8 p-0"
+              onClick={(e) => e.stopPropagation()}
+            >
               <span className="sr-only">Open menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
@@ -133,10 +136,9 @@ export function tableColumns<T>(headers: {
                 (table.getIsSomePageRowsSelected() && "indeterminate")
               }
               onCheckedChange={(value) => {
-                table.toggleAllPageRowsSelected(!!value)
-                headers.onCheckedAll?.(!!value)
-              }
-              }
+                table.toggleAllPageRowsSelected(!!value);
+                headers.onCheckedAll?.(!!value);
+              }}
               aria-label="Select all"
             />
           </span>
@@ -149,9 +151,12 @@ export function tableColumns<T>(headers: {
             <Checkbox
               checked={row.getIsSelected()}
               onCheckedChange={(value) => {
-                row.toggleSelected(!!value)
+                row.toggleSelected(!!value);
 
-                headers.onCheckRow?.((row.original as T & { id: Id }).id, !!value)
+                headers.onCheckRow?.(
+                  (row.original as T & { id: Id }).id,
+                  !!value,
+                );
               }}
               aria-label="Select row"
             />
