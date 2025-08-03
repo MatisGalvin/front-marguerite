@@ -112,6 +112,7 @@ export function UpdatePurchaseSheet(p: {
       );
       p.onOpenChange(false);
       form.reset();
+      queryClient.invalidateQueries({ queryKey: ["purchases"] });
     },
     onError: (err) => {
       toastError(
