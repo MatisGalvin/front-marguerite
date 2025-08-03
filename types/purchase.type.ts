@@ -9,7 +9,7 @@ export type PurchaseStatus =
 
 export type Purchase = {
   id: number | string;
-  status: PurchaseStatus;
+  purchase_status: PurchaseStatus;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

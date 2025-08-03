@@ -29,7 +29,7 @@ export type ReadAllPurchaseResponse = StrapiResultList<Purchase>;
 
 /* Update Purchase */
 export type UpdatePurchaseRequest = Partial<
-  Pick<Purchase, "is_paid" | "status" | "id" | "is_seen_by_user"> & {
+  Pick<Purchase, "is_paid" | "purchase_status" | "id" | "is_seen_by_user"> & {
     saleId?: Id;
     clientId?: Id;
   }
@@ -37,6 +37,6 @@ export type UpdatePurchaseRequest = Partial<
 export type UpdatePurchaseResponse = StrapiResult<Purchase>;
 
 export type UpdateManyPurchaseReq = (Pick<Purchase, "id"> &
-  Partial<Pick<Purchase, "is_paid" | "is_seen_by_user" | "status">>)[];
+  Partial<Pick<Purchase, "is_paid" | "is_seen_by_user" | "purchase_status">>)[];
 
 export type UpdateManyPurchaseResponse = StrapiResult<Purchase>;

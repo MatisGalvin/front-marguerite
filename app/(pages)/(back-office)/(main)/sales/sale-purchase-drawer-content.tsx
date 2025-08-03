@@ -23,7 +23,6 @@ export function SalePurchaseDrawerContent(p: {
   if (!p.sale) {
     return null;
   }
-
   return (
     <Drawer open={!!p.sale} onOpenChange={p.onOpenChange}>
       <DrawerContent className="m-0 h-screen p-0">

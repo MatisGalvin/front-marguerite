@@ -94,6 +94,7 @@ export function CreatePurchaseSheet() {
         "La commande à été créée avec succès",
       );
       queryClient.invalidateQueries({ queryKey: ["purchases"] });
+      queryClient.invalidateQueries({ queryKey: ["sales"] });
       form.reset();
     },
     onError: async (error) => {
