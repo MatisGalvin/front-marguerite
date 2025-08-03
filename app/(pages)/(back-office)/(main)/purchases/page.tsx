@@ -86,6 +86,7 @@ export default function Purchases() {
           ),
         });
       }
+      queryClient.invalidateQueries({ queryKey: ["purchases"] });
     },
     onError: () => {
       if (shouldShowToastFeedbackRef.current == true) {
