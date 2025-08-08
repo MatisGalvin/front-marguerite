@@ -161,7 +161,7 @@ export function PurchaseTable(p: {
           updatePurchase({
             id: formatedPurchase.id,
             is_paid: true,
-            status: "purchase-completed",
+            purchase_status: "purchase-completed",
           });
         },
       },
@@ -170,11 +170,11 @@ export function PurchaseTable(p: {
           row.isPaid && row.purchaseStatus !== "purchase-archived",
         icon: () => CircleOff,
         label: () => "Commande impayée",
-        onClick: (formatedPurchase) => {
+        onClick: (formatedPurchase: FormatTableItem) => {
           updatePurchase({
             id: formatedPurchase.id,
             is_paid: false,
-            status: "purchase-pending",
+            purchase_status: "purchase-pending",
           });
         },
       },
@@ -202,7 +202,7 @@ export function PurchaseTable(p: {
               onClick: () => {
                 updatePurchase({
                   id: formatedPurchase.id,
-                  status: "purchase-archived",
+                  purchase_status: "purchase-archived",
                 });
               },
             },
