@@ -16,7 +16,6 @@ export class SaleAPI {
         .get("sales", searchParams?.userId ? { searchParams } : undefined)
         .json<ReadAllSaleResponse>(),
     );
-    console.log("SaleAPI.readAll", result);
     return result;
   }
   static async create(body: CreateSaleForm) {

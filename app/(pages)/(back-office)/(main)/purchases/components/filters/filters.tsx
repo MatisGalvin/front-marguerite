@@ -6,20 +6,20 @@ import { FormatTableItem } from "../../page";
 export const PurchaseStatusFilter = (p: {
   table: TableTanStack<Partial<FormatTableItem>>;
 }) => {
-  const currentFilterValue = p.table.getColumn("status")?.getFilterValue() as
-    | keyof typeof PURCHASE_LABEL_STATUS
-    | "all";
+  const currentFilterValue = p.table
+    .getColumn("purchaseStatus")
+    ?.getFilterValue() as keyof typeof PURCHASE_LABEL_STATUS | "all";
 
   const handleTabChange = (value: string) => {
     if (value == "all") {
-      p.table.getColumn("status")?.setFilterValue("");
+      p.table.getColumn("purchaseStatus")?.setFilterValue("");
       p.table.getColumn("isSeenByUser")?.setFilterValue(undefined);
     } else if (value === "is_seen_by_user") {
-      p.table.getColumn("status")?.setFilterValue("");
+      p.table.getColumn("purchaseStatus")?.setFilterValue("");
       p.table.getColumn("isSeenByUser")?.setFilterValue(false);
     } else {
       p.table.getColumn("isSeenByUser")?.setFilterValue(undefined);
-      p.table.getColumn("status")?.setFilterValue(value);
+      p.table.getColumn("purchaseStatus")?.setFilterValue(value);
     }
   };
 

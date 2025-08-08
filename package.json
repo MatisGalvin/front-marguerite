@@ -13,7 +13,8 @@
     "docker:dev:down": "docker-compose -f compose.dev.yml down",
     "docker:prod:down": "docker-compose -f compose.prod.yml down",
     "docker:dev:logs": "docker-compose -f compose.dev.yml logs -f",
-    "docker:prod:logs": "docker-compose -f compose.prod.yml logs -f"
+    "docker:prod:logs": "docker-compose -f compose.prod.yml logs -f",
+    "test": "npx playwright test --project=chromium"
   },
   "lint-staged": {
     "app/**/*.{ts,tsx}": [
