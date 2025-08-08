@@ -154,7 +154,7 @@ export default function Purchases() {
           updatePurchase({
             id: formatedPurchase.id,
             is_paid: true,
-            status: "purchase-completed",
+            purchase_status: "purchase-completed",
           });
         },
       },
@@ -167,7 +167,7 @@ export default function Purchases() {
           updatePurchase({
             id: formatedPurchase.id,
             is_paid: false,
-            status: "purchase-pending",
+            purchase_status: "purchase-pending",
           });
         },
       },
@@ -195,7 +195,7 @@ export default function Purchases() {
               onClick: () => {
                 updatePurchase({
                   id: formatedPurchase.id,
-                  status: "purchase-archived",
+                  purchase_status: "purchase-archived",
                 });
               },
             },
