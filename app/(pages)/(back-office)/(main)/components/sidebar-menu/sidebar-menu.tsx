@@ -41,17 +41,17 @@ export function SidebarMenu(p: SidebarMenuProps) {
   const refreshClients = async () => {
     await queryClient.invalidateQueries({ queryKey: ["clients"] });
   };
-  useEffect(() => {
-    socket.on(SocketEvents.PURCHASE_CREATE, refetchPurchasesAndSales);
-    socket.on(SocketEvents.PURCHASE_UPDATE, refetchPurchasesAndSales);
-    socket.on(SocketEvents.SALE_UPDATE, refetchPurchasesAndSales);
-    socket.on(SocketEvents.CLIENT_CREATE, refreshClients);
-    socket.on(SocketEvents.CLIENT_UPDATE, refreshClients);
-    return () => {
-      socket.off(SocketEvents.PURCHASE_CREATE);
-      socket.off(SocketEvents.SALE_UPDATE);
-    };
-  }, []);
+  // useEffect(() => {
+  //   socket.on(SocketEvents.PURCHASE_CREATE, refetchPurchasesAndSales);
+  //   socket.on(SocketEvents.PURCHASE_UPDATE, refetchPurchasesAndSales);
+  //   socket.on(SocketEvents.SALE_UPDATE, refetchPurchasesAndSales);
+  //   socket.on(SocketEvents.CLIENT_CREATE, refreshClients);
+  //   socket.on(SocketEvents.CLIENT_UPDATE, refreshClients);
+  //   return () => {
+  //     socket.off(SocketEvents.PURCHASE_CREATE);
+  //     socket.off(SocketEvents.SALE_UPDATE);
+  //   };
+  // }, []);
 
   const LINKS: {
     title: string;

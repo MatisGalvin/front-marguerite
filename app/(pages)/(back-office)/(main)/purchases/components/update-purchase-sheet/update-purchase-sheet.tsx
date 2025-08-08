@@ -1,3 +1,4 @@
+"use client";
 import { PurchaseApi } from "@/api/purchase/purchase-api";
 import { UpdatePurchaseRequest } from "@/api/purchase/purchase-api.type";
 import { Button } from "@/components/ui/button";
@@ -103,8 +104,10 @@ export function UpdatePurchaseSheet(p: {
     }
   }, [p.isOpen]);
   const { mutate: updatePurchase, isPending } = useMutation({
-    mutationFn: async (purchaseWithItems: UpdatePurchaseRequest) =>
-      PurchaseApi.update(p.purchase.id, purchaseWithItems),
+    mutationFn: async (purchaseWithItems: UpdatePurchaseRequest) => {
+      return PurchaseApi.update(p.purchase.id, purchaseWithItems);
+    },
+
     onSuccess: () => {
       toastSuccess(
         "Modification de la commande",
@@ -113,6 +116,7 @@ export function UpdatePurchaseSheet(p: {
       p.onOpenChange(false);
       form.reset();
       queryClient.invalidateQueries({ queryKey: ["purchases"] });
+      queryClient.invalidateQueries({ queryKey: ["sales"] });
     },
     onError: (err) => {
       toastError(

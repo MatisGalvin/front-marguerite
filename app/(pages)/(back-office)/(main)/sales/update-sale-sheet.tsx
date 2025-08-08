@@ -32,7 +32,6 @@ export function UpdateSaleSheet(p: {
   const products = useProductsMe();
 
   const sale = p.sale;
-  console.log("UpdateSaleSheet", sale);
 
   const form = useForm<UpdateSaleForm>({
     resolver: zodResolver(UpdateSaleFormSchema),

@@ -56,7 +56,7 @@ export default function Purchases() {
     useState<Purchase>();
   const shouldShowToastFeedbackRef = useRef(true);
   const purchasesWithoutArchived = purchases?.filter(
-    (purchase) => purchase.status !== "purchase-archived",
+    (purchase) => purchase.purchase_status !== "purchase-archived",
   );
   const formattedPurchases = useMemo(
     () => (purchases ? formatTableData(purchasesWithoutArchived!) : []),
@@ -146,7 +146,8 @@ export default function Purchases() {
   const tableActions: TableAction<FormatTableItem>[] = useMemo(
     () => [
       {
-        isShow: (row) => !row.isPaid && row.status !== "purchase-archived",
+        isShow: (row) =>
+          !row.isPaid && row.purchaseStatus !== "purchase-archived",
         icon: () => CheckCircle,
         label: () => "Commande payée",
         onClick: (formatedPurchase) => {
@@ -158,7 +159,8 @@ export default function Purchases() {
         },
       },
       {
-        isShow: (row) => row.isPaid && row.status !== "purchase-archived",
+        isShow: (row) =>
+          row.isPaid && row.purchaseStatus !== "purchase-archived",
         icon: () => CircleOff,
         label: () => "Commande impayée",
         onClick: (formatedPurchase) => {
@@ -179,7 +181,7 @@ export default function Purchases() {
       },
 
       {
-        isShow: (row) => row.status !== "purchase-archived",
+        isShow: (row) => row.purchaseStatus !== "purchase-archived",
         icon: () => Archive,
         label: () => "Archiver",
         onClick: (formatedPurchase) => {
@@ -291,7 +293,7 @@ export default function Purchases() {
                 label: "Statut du paiement",
                 cell: ({ row: { original: row } }) => {
                   return (
-                    row.status !== "purchase-archived" &&
+                    row.purchaseStatus !== "purchase-archived" &&
                     (row.isPaid ? (
                       <BadgeStatus color="green">Payé</BadgeStatus>
                     ) : (
@@ -312,7 +314,7 @@ export default function Purchases() {
               { key: "firstname", label: "Nom", isShow: false },
               { key: "lastname", label: "Prenom", isShow: false },
               { key: "email", label: "Email", isShow: false },
-              { key: "status", label: "Statut", isShow: false },
+              { key: "purchaseStatus", label: "Statut", isShow: false },
               { key: "purchaseItems", label: "Produits", isShow: false },
               { key: "isSeenByUser", label: "Vu", isShow: false },
               {
@@ -366,7 +368,7 @@ export type FormatTableItem = {
   client: Client;
   sale: string;
   productCount: number;
-  status: PurchaseStatus;
+  purchaseStatus: PurchaseStatus;
   isPaid: boolean;
   firstname: string;
   lastname: string;
@@ -389,7 +391,7 @@ function formatTableData(purchases: Purchase[]): FormatTableItem[] {
     productCount: purchase.purchase_items
       .map((item) => item.quantity)
       .reduce((acc, qty) => acc + qty, 0),
-    status: purchase.status,
+    purchaseStatus: purchase.purchase_status,
     isPaid: purchase.is_paid,
     phoneNumber: purchase.client.phoneNumber,
     firstname: purchase.client.firstname,
