@@ -126,11 +126,11 @@ importers:
         specifier: ^0.9.1
         version: 0.9.9(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       zod:
-        specifier: ^3.22.4
-        version: 3.25.71
+        specifier: ^4.0.17
+        version: 4.0.17
       zod-i18n-map:
         specifier: ^2.27.0
-        version: 2.27.0(i18next@23.16.8)(zod@3.25.71)
+        version: 2.27.0(i18next@23.16.8)(zod@4.0.17)
     devDependencies:
       '@hookform/devtools':
         specifier: ^4.3.1
@@ -2889,8 +2889,8 @@ packages:
       i18next: '>=21.3.0'
       zod: '>=3.17.0'
 
-  zod@3.25.71:
-    resolution: {integrity: sha512-BsBc/NPk7h8WsUWYWYL+BajcJPY8YhjelaWu2NMLuzgraKAz4Lb4/6K11g9jpuDetjMiqhZ6YaexFLOC0Ogi3Q==}
+  zod@4.0.17:
+    resolution: {integrity: sha512-1PHjlYRevNxxdy2JZ8JcNAw7rX8V9P1AKkP+x/xZfxB0K5FYfuV+Ug6P/6NVSR2jHQ+FzDDoDHS04nYUsOIyLQ==}
 
 snapshots:
 
@@ -5860,9 +5860,9 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod-i18n-map@2.27.0(i18next@23.16.8)(zod@3.25.71):
+  zod-i18n-map@2.27.0(i18next@23.16.8)(zod@4.0.17):
     dependencies:
       i18next: 23.16.8
-      zod: 3.25.71
+      zod: 4.0.17
 
-  zod@3.25.71: {}
+  zod@4.0.17: {}
